@@ -2,7 +2,6 @@ import React, { useEffect, useReducer } from 'react'
 import axios from 'axios'
 import { UserContext } from './UserContext'
 import UserReducer from './UserReducer'
-import { toast } from 'react-toastify'
 
 const UserState = (props) => {
 
@@ -36,7 +35,7 @@ const UserState = (props) => {
 	}
 
 	const validateUser = async (data) => {
-		let result = state.users.filter(user => user.email == data.email && user.password == data.password)[0]
+		let result = state.users.filter(user => user.email === data.email && user.password === data.password)[0]
 		dispatch({
 			type: 'SET_USER',
 			payload: result
@@ -45,7 +44,7 @@ const UserState = (props) => {
 	}
 
 	const setUser = async (data) => {
-		let result = state.users.filter(user => user.email == data.email)[0]
+		let result = state.users.filter(user => user.email === data.email)[0]
 		if (!result) {
 			let orderData = {
 				name: data.name,

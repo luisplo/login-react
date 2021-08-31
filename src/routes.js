@@ -4,7 +4,7 @@ import {
 	Navigate
 } from "react-router-dom";
 import { UserContext } from "./context/User/UserContext";
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // layouts
 import DashboardLayout from './layouts/Dashboard';
@@ -20,7 +20,6 @@ import UserState from "./context/User/UserState";
 const App = () => {
 
 	const { selectedUser } = useContext(UserContext)
-	console.log('selectedUser', selectedUser)
 	// ----------------------------------------------------------------------
 	let routes = useRoutes([
 		{
@@ -28,7 +27,7 @@ const App = () => {
 			element: selectedUser ? <DashboardLayout /> : <Navigate to="/login" replace />,
 			children: [
 				{ path: '/', element: <Navigate to="/dashboard/app" replace /> },
-				// { path: 'app', element: <DashboardApp /> },
+				{ path: 'app', element: <DashboardApp /> },
 			]
 		},
 		{
@@ -36,13 +35,12 @@ const App = () => {
 			children: [
 				{ path: 'login', element: <Login /> },
 				{ path: 'register', element: <Register /> },
-				// { path: '404', element: <NotFound /> },
+				{ path: '404', element: <NotFound /> },
 				{ path: '/', element: <Navigate to="/dashboard" /> },
-				// { path: '*', element: <Navigate to="/404" /> }
+				{ path: '*', element: <Navigate to="/404" /> }
 			]
 		},
-
-		// { path: '*', element: <Navigate to="/404" replace /> }
+		{ path: '*', element: <Navigate to="/404" replace /> }
 	]);
 	return routes;
 };

@@ -44,7 +44,7 @@ export default function LoginForm() {
 				const result = await validateUser(values);
 				if (result) {
 					toast.success(`Bienvenido. ${result.name}`)
-					if (result.role == 'Administrador') {
+					if (result.role === 'Administrador') {
 						await navigate('/dashboard', { replace: true });
 					} else {
 						await navigate('/dashboard/maintenance', { replace: true });
@@ -105,7 +105,6 @@ export default function LoginForm() {
 						control={<Checkbox {...getFieldProps('remember')} checked={values.remember} />}
 						label="Recordar Sesión"
 					/>
-
 					<Link component={RouterLink} variant="subtitle2" to="/register">
 						Regístrate
 					</Link>
