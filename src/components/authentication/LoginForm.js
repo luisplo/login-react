@@ -22,7 +22,7 @@ import { toast } from 'react-toastify'
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
-	const { validateUser } = useContext(UserContext)
+	const { validateUser, users } = useContext(UserContext)
 
 	const navigate = useNavigate();
 	const [showPassword, setShowPassword] = useState(false);
@@ -40,16 +40,20 @@ export default function LoginForm() {
 		},
 		validationSchema: LoginSchema,
 		onSubmit: async (values) => {
-			const result = await validateUser(values);
-			if (result) {
-				toast.success(`Bienvenido ${result.email}`)
-				if (result.role == 'Administrador') {
-					await navigate('/dashboard', { replace: true });
+			if (users.length > 0) {
+				const result = await validateUser(values);
+				if (result) {
+					toast.success(`Bienvenido. ${result.name}`)
+					if (result.role == 'Administrador') {
+						await navigate('/dashboard', { replace: true });
+					} else {
+						await navigate('/dashboard/maintenance', { replace: true });
+					}
 				} else {
-					await navigate('/dashboard/maintenance', { replace: true });
+					toast.error("Credenciales invalidas")
 				}
 			} else {
-				toast.error(`Credenciales invalidas`)
+				toast.error("Usuario no registrado")
 			}
 		}
 	});
@@ -96,12 +100,14 @@ export default function LoginForm() {
 
 				<Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
 					<FormControlLabel
+						title="Esta opcion aun no esta en funcionamiento"
+						disabled
 						control={<Checkbox {...getFieldProps('remember')} checked={values.remember} />}
 						label="Recordar Sesión"
 					/>
 
-					<Link component={RouterLink} variant="subtitle2" to="#">
-						Olvidó su contraseña?
+					<Link component={RouterLink} variant="subtitle2" to="/register">
+						Regístrate
 					</Link>
 				</Stack>
 

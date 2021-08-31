@@ -1,4 +1,4 @@
-import { GET_USERS, GET_ROLE,GET_PROFILE, SET_USER } from '../types'
+import { GET_USERS, GET_ROLE, GET_PROFILE, SET_USER, SAVE_USER } from '../types'
 
 export default (state, action) => {
 
@@ -23,7 +23,12 @@ export default (state, action) => {
 		case SET_USER:
 			return {
 				...state,
-				selectedUser: payload
+				selectedUser: payload,
+			}
+		case SAVE_USER:
+			return {
+				...state,
+				users: state.users.concat(payload),
 			}
 		default:
 			return state

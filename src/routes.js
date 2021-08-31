@@ -20,13 +20,14 @@ import UserState from "./context/User/UserState";
 const App = () => {
 
 	const { selectedUser } = useContext(UserContext)
+	console.log('selectedUser', selectedUser)
 	// ----------------------------------------------------------------------
 	let routes = useRoutes([
 		{
 			path: '/dashboard',
 			element: selectedUser ? <DashboardLayout /> : <Navigate to="/login" replace />,
 			children: [
-				// { path: '/', element: <Navigate to="/dashboard/app" replace /> },
+				{ path: '/', element: <Navigate to="/dashboard/app" replace /> },
 				// { path: 'app', element: <DashboardApp /> },
 			]
 		},
@@ -34,9 +35,9 @@ const App = () => {
 			path: '/',
 			children: [
 				{ path: 'login', element: <Login /> },
-				// { path: 'register', element: <Register /> },
+				{ path: 'register', element: <Register /> },
 				// { path: '404', element: <NotFound /> },
-				// { path: '/', element: <Navigate to="/dashboard" /> },
+				{ path: '/', element: <Navigate to="/dashboard" /> },
 				// { path: '*', element: <Navigate to="/404" /> }
 			]
 		},

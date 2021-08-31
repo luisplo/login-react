@@ -10,18 +10,14 @@ const UserState = (props) => {
 	const URL_API = 'https://raw.githubusercontent.com/ag-grid/ag-grid/master/grid-packages/ag-grid-docs/src/olympicWinners.json'
 
 	const initialState = {
-		users: [{
-			email: 'luisreyes.apolo@gmail.com',
-			password: '123456789',
-			role: 'Administrador'
-		}],
+		users: [],
 		selectedUser: null,
 		role: ['Administrador', 'Coordinador']
 	}
 
 	const [state, dispatch] = useReducer(UserReducer, initialState, () => {
 		// Persistent data
-		const localData = localStorage.getItem('state')
+		const localData = sessionStorage.getItem('state')
 		return localData ? JSON.parse(localData) : initialState
 	})
 
@@ -40,12 +36,7 @@ const UserState = (props) => {
 	}
 
 	const validateUser = async (data) => {
-		let result
-		if (state.users.length > 0) {
-			result = state.users.filter(user => user.email == data.email)[0]
-		} else {
-			result = initialState.users.filter(user => user.email == data.email && user.password == data.password)[0]
-		}
+		let result = state.users.filter(user => user.email == data.email && user.password == data.password)[0]
 		dispatch({
 			type: 'SET_USER',
 			payload: result
@@ -54,12 +45,20 @@ const UserState = (props) => {
 	}
 
 	const setUser = async (data) => {
-		// dispatch({
-		// 	type: 'SET_USER',
-		// 	payload: { user: res.data.user, role: res.data.role, token: res.data.token }
-		// })
-		return data
-		// toast.success(`Bienvenido. ${res.data.user.name}`)
+		let result = state.users.filter(user => user.email == data.email)[0]
+		if (!result) {
+			let orderData = {
+				name: data.name,
+				email: data.email,
+				role: data.role,
+				password: data.password
+			}
+			dispatch({
+				type: 'SAVE_USER',
+				payload: orderData
+			})
+			return orderData
+		}
 	}
 
 	const setLogout = async () => {
@@ -74,7 +73,7 @@ const UserState = (props) => {
 	}
 
 	useEffect(() => {
-		localStorage.setItem('state', JSON.stringify(state))
+		sessionStorage.setItem('state', JSON.stringify(state))
 	}, [state])
 
 	return (

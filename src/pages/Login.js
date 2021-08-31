@@ -20,7 +20,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 	minHeight: '100vh',
 	flexDirection: 'column',
 	justifyContent: 'center',
-	padding: theme.spacing(7, 0)
+	padding: theme.spacing(0, 0)
 }));
 
 // ----------------------------------------------------------------------
