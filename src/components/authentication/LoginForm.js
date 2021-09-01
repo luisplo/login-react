@@ -44,11 +44,7 @@ export default function LoginForm() {
 				const result = await validateUser(values);
 				if (result) {
 					toast.success(`Bienvenido. ${result.name}`)
-					if (result.role === 'Administrador') {
-						await navigate('/dashboard', { replace: true });
-					} else {
-						await navigate('/dashboard/maintenance', { replace: true });
-					}
+					await navigate('/dashboard', { replace: true });
 				} else {
 					toast.error("Credenciales invalidas")
 				}
