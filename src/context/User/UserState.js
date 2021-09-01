@@ -24,10 +24,10 @@ const UserState = (props) => {
 		})
 	}
 
-	const getProfile = () => {
+	const setLogout = () => {
 		dispatch({
-			type: 'GET_PROFILE',
-			payload: 'Hola Mundo desde Context Users'
+			type: 'SET_USER',
+			payload: null
 		})
 	}
 
@@ -69,8 +69,8 @@ const UserState = (props) => {
 			selectedUser: state.selectedUser,
 			getUsers,
 			validateUser,
-			getProfile,
 			setUser,
+			setLogout
 		}} >
 			{props.children}
 		</UserContext.Provider >

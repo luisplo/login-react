@@ -8,16 +8,16 @@ import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 
 
 const columns = [
-	{ id: 'athlete', label: 'Atleta', minWidth: 170 },
-	{ id: 'age', label: 'Edad', minWidth: 100 },
-	{ id: 'country', label: 'País', minWidth: 170, },
-	{ id: 'year', label: 'Año', minWidth: 170, },
-	{ id: 'date', label: 'Fecha', minWidth: 170, },
-	{ id: 'sport', label: 'Deporte', minWidth: 170, },
-	{ id: 'gold', label: 'Oro', minWidth: 170, },
-	{ id: 'silver', label: 'Plata', minWidth: 170, },
-	{ id: 'bronze', label: 'Bronce', minWidth: 170, },
-	{ id: 'total', label: 'Total', minWidth: 170, },
+	{ id: 'athlete', label: 'Atleta' },
+	{ id: 'age', label: 'Edad' },
+	{ id: 'country', label: 'País' },
+	{ id: 'year', label: 'Año' },
+	{ id: 'date', label: 'Fecha' },
+	{ id: 'sport', label: 'Deporte' },
+	{ id: 'gold', label: 'Oro' },
+	{ id: 'silver', label: 'Plata' },
+	{ id: 'bronze', label: 'Bronce' },
+	{ id: 'total', label: 'Total' },
 
 ];
 
@@ -54,7 +54,7 @@ export default function TableCategories() {
 		<Grid container spacing={3}>
 			<Grid item xs>
 				<Card className={classes.root} variant="outlined">
-					<CardActionArea >
+					<CardActionArea>
 						<CardContent>
 							<Grid container spacing={0}>
 								<Grid item xs>

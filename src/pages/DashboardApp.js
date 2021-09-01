@@ -1,14 +1,11 @@
 // material
-import { Box, Grid, Container, Typography } from '@material-ui/core';
-import { useContext } from 'react';
+import { Grid, Container } from '@material-ui/core';
 // components
 import Page from '../components/Page';
-import { UserContext } from '../context/User/UserContext';
 import TabPanelAdmin from '../components/TabPanelAdmin'
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
-	const { selectedUser } = useContext(UserContext);
 
 	return (
 		<Page title="Dashboard">
