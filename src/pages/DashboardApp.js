@@ -4,7 +4,7 @@ import { useContext } from 'react';
 // components
 import Page from '../components/Page';
 import { UserContext } from '../context/User/UserContext';
-// import Categories from '../components/Categories'
+import TabPanelAdmin from '../components/TabPanelAdmin'
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
@@ -13,10 +13,9 @@ export default function DashboardApp() {
 	return (
 		<Page title="Dashboard">
 			<Container maxWidth="xl">
-				<Grid container spacing={3}>
-					<Grid item xs={12} sm={6} md={3}>
-						{/* <Typography variant="h4">Hi {selectedUser.name}, Welcome back</Typography> */}
-						{/* <Categories/> */}
+				<Grid container spacing={3} >
+					<Grid item xs={12} sm={6} md={12} alignItems="center">
+						<TabPanelAdmin />
 					</Grid>
 				</Grid>
 			</Container>

@@ -5,9 +5,6 @@ import UserReducer from './UserReducer'
 
 const UserState = (props) => {
 
-
-	const URL_API = 'https://raw.githubusercontent.com/ag-grid/ag-grid/master/grid-packages/ag-grid-docs/src/olympicWinners.json'
-
 	const initialState = {
 		users: [],
 		selectedUser: null,
@@ -60,16 +57,7 @@ const UserState = (props) => {
 		}
 	}
 
-	const setLogout = async () => {
-		const res = await axios.post(`${URL_API}/validate/token`)
-		console.log('res', res)
-		// dispatch({
-		// 	type: 'SET_USER',
-		// 	payload: null
-		// })
-		// toast.success(`Sesión cerrada con éxito. ${res.data.user.name}`)
 
-	}
 
 	useEffect(() => {
 		sessionStorage.setItem('state', JSON.stringify(state))
@@ -83,7 +71,6 @@ const UserState = (props) => {
 			validateUser,
 			getProfile,
 			setUser,
-			setLogout
 		}} >
 			{props.children}
 		</UserContext.Provider >
